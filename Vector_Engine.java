@@ -67,20 +67,48 @@ public class Vector_Engine{
         return magnitude;
     }
 
+    public static double[] normalize(double[] u) {
+        double[] normal = new double[u.length];
+        double mag = Vector_Engine.magnitude(u);
+        int vectorLength = u.length;
+        
+        for (int i = 0; i < vectorLength; i++) {
+            normal[i] = u[i] / mag;
+        }
+
+        return normal;
+    }
+
+    public static double dot(double[] u, double[] v){
+        double product = 0.0;
+        int vectorLength = u.length;
+
+        for (int i = 0; i < vectorLength; i++) {
+            double tempNum = u[i] * v[i];
+
+            product = product + tempNum;
+        }
+
+        return product;
+    }
+
     public static void main (String[] args) {
         double scalar = 2;
         double[] v1 = {2, 4, 3};
         double[] v2 = {3, 4, 2};
 
-        Vector_Engine vecOp = new Vector_Engine();
-        double[] vsum = vecOp.add(v1, v2);
-        double[] vdiff = vecOp.subtract(v1 , v2);
-        double[] vmult = vecOp.scale(v1, scalar);
-        double vmag = vecOp.magnitude(v1);
+        double[] vsum = Vector_Engine.add(v1, v2);
+        double[] vdiff = Vector_Engine.subtract(v1 , v2);
+        double[] vmult = Vector_Engine.scale(v1, scalar);
+        double vmag = Vector_Engine.magnitude(v1);
+        double[] vnorm = Vector_Engine.normalize(v1);
+        double vdot = Vector_Engine.dot(v1, v2);
 
         System.out.println(Arrays.toString(vsum));
         System.out.println(Arrays.toString(vdiff));
         System.out.println(Arrays.toString(vmult));
         System.out.println(vmag);
+        System.out.println(Arrays.toString(vnorm));
+        System.out.println(vdot);
     }   
 }
