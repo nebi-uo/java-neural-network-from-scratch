@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Vector_Engine{
@@ -52,9 +51,21 @@ public class Vector_Engine{
         return scalarMultiple;
     } 
 
-    //public static double[] normalize(double[] u) {
-        
-    //}
+    public static double magnitude(double[] u) {
+        double magnitude = 0.0;
+        int vectorLength = u.length; 
+        double tempNum = 0;
+
+        for (int i = 0; i < vectorLength; i++) {
+            double tempNum2 = u[i]*u[i];
+
+            tempNum = tempNum + tempNum2;
+        }
+
+        magnitude = Math.sqrt(tempNum);
+
+        return magnitude;
+    }
 
     public static void main (String[] args) {
         double scalar = 2;
@@ -65,9 +76,11 @@ public class Vector_Engine{
         double[] vsum = vecOp.add(v1, v2);
         double[] vdiff = vecOp.subtract(v1 , v2);
         double[] vmult = vecOp.scale(v1, scalar);
+        double vmag = vecOp.magnitude(v1);
 
         System.out.println(Arrays.toString(vsum));
         System.out.println(Arrays.toString(vdiff));
         System.out.println(Arrays.toString(vmult));
+        System.out.println(vmag);
     }   
 }
