@@ -92,6 +92,39 @@ public class Vector_Engine{
         return product;
     }
 
+    public static boolean isOrthogonal(double[] u, double[] v) {
+        boolean isOrthogonal = false;
+        double dot = Vector_Engine.dot(u, v);
+
+        if (dot == 0) {
+            isOrthogonal = true;
+            return isOrthogonal;
+        }
+        else{
+            return isOrthogonal;
+        }
+    }
+
+    // Projection of vector u onto vector v
+    public static double[] proj(double[] u, double[] v) {
+        double[] projection = new double[u.length];
+        double dot = Vector_Engine.dot(u, v);
+        double magnitude = Vector_Engine.magnitude(v);
+        int vectorLength = u.length;
+
+        double tempNum = dot / (magnitude * magnitude);
+
+        for (int i = 0; i < vectorLength; i++) {
+            projection[i] = v[i] * tempNum;
+        }
+
+        return projection;
+    }
+
+    /*public static double[] linearCombination() {
+        
+    }*/
+
     public static void main (String[] args) {
         double scalar = 2;
         double[] v1 = {2, 4, 3};
@@ -103,6 +136,8 @@ public class Vector_Engine{
         double vmag = Vector_Engine.magnitude(v1);
         double[] vnorm = Vector_Engine.normalize(v1);
         double vdot = Vector_Engine.dot(v1, v2);
+        boolean vorth = Vector_Engine.isOrthogonal(v1, v2);
+        double[] vproj = Vector_Engine.proj(v1, v2);
 
         System.out.println(Arrays.toString(vsum));
         System.out.println(Arrays.toString(vdiff));
@@ -110,5 +145,7 @@ public class Vector_Engine{
         System.out.println(vmag);
         System.out.println(Arrays.toString(vnorm));
         System.out.println(vdot);
+        System.out.println(vorth);
+        System.out.println(Arrays.toString(vproj));
     }   
 }
